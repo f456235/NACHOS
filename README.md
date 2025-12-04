@@ -63,7 +63,7 @@ Established a secure protection mechanism to isolate User Mode from Kernel Mode.
 
 ## 🔧 Engineering Challenges & Solutions
 
-### Challenge 1: The "Broadcast Storm" of Recursion (File System)
+### Challenge 1: Improper Recursive Resource Deallocation (File System)
 * **Problem:** Implementing `rm -r` (recursive delete) was tricky because deleting a directory requires first emptying its contents. A naive implementation caused memory corruption when traversing deep directory trees.
 * **Solution:** I architected a **Depth-First Search (DFS)** traversal mechanism. The kernel recursively enters directories, deletes files bottom-up, and updates the `FreeMap` and `DirectoryTable` only after the child nodes are successfully cleared.
 
